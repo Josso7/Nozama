@@ -14,7 +14,21 @@ const AWS = () => {
       console.log(res)
     }
 
+    const testTheThing = async (e) => {
+      const one = 1
+      const res = await fetch('/api/carts/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          one
+        })
+      })
+    }
+
     return (
+      <>
         <form onSubmit={e => uploadFile(e)}>
             <label className='upload-files-button' htmlFor='upload-files-input'>SELECT FILE</label>
               <input
@@ -24,6 +38,8 @@ const AWS = () => {
                 ></input>
             <button type='submit'></button>
         </form>
+        <button onClick={e => testTheThing(e)}> Test the thing </button>
+      </>
     )
 }
 

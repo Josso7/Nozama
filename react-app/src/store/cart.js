@@ -1,25 +1,30 @@
 const LOAD_CART = 'session/LOAD_CART'
 
-const loadCart = (cart) => ({
+const loadCart = (cartId) => ({
     type: LOAD_CART,
-    payload: cart
+    payload: cartId
 });
 
 export const createCart = (userId) => async (dispatch) => {
-    const response = fetch('/api/cart', {
+    const response = fetch('/api/carts/', {
         method: 'POST',
-        body: {
-            userId: userId
-        }
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            userId
+        })
     })
     if(response.ok){
-        const data = await response.json()
-        if(data.errors){
-            return data.errors
+        const cartId = await response.json()
+        if(cartId.errors){
+            return cartId.errors
         }
-        dispatch(loadCart(data))
+        dispatch(loadCart(cartId))
     }
 }
+
+const initialState = {}
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
