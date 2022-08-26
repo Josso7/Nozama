@@ -54,3 +54,8 @@ def delete_product(productId):
     db.session.commit()
 
     return data
+
+@product_routes.route('/', methods=['GET'])
+def get_all_products():
+    products = db.session.query(Product).all()
+    return { "products": [product.to_dict() for product in products] }

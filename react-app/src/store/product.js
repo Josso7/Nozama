@@ -6,6 +6,26 @@ const addProduct = (product) => ({
     payload: product
 })
 
+const loadAllProducts = (products) => ({
+    type: LOAD_PRODUCTS,
+    payload: products
+})
+
+export const getAllProducts = () => async (dispatch) => {
+    const response = await fetch('/api/products/')
+
+    if(response.ok){
+        const data = await response.json();
+        dispatch(loadAllProducts(data))
+        return data
+    } else if (response.status < 500){
+        const data = await response.json()
+        if(data.errors){
+            return data.errors
+        }
+    }
+}
+
 export const editProduct = (productId, name, price, category, description, image0, image1, image2, image3, image4, image5) => async (dispatch) => {
     const response = await fetch(`/api/products/${productId}/edit`, {
         method: 'PUT',
@@ -89,8 +109,9 @@ const initialState = {}
 export default function reducer(state = initialState, action){
     switch(action.type){
         case LOAD_PRODUCTS:
+                console.log(action.payload)
                 const newState = {}
-                action.products.forEach(product => {
+                action.payload.products.forEach(product => {
                     newState[product.id] = product
                 })
             return newState;
