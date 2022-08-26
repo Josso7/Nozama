@@ -7,7 +7,7 @@ cart_routes = Blueprint('carts', __name__)
 @cart_routes.route('/', methods=['POST'])
 def create_cart():
     # print(request.json)
-    user_id = request.json.get('one')
+    user_id = request.json.get('userId')
 
     cart = Cart(
         user_id = user_id,
@@ -17,5 +17,4 @@ def create_cart():
 
     db.session.add(cart)
     db.session.commit()
-    print(cart.id)
-    return "yes"
+    return f'{cart.id}'

@@ -5,8 +5,10 @@ const loadCart = (cartId) => ({
     payload: cartId
 });
 
-export const createCart = (userId) => async (dispatch) => {
-    const response = fetch('/api/carts/', {
+export const createCart = (id) => async (dispatch) => {
+    const userId = id
+    // console.log(userId)
+    const cartId = await fetch('/api/carts/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -14,9 +16,8 @@ export const createCart = (userId) => async (dispatch) => {
         body: JSON.stringify({
             userId
         })
-    })
-    if(response.ok){
-        const cartId = await response.json()
+    }).then(response => response.json())
+    if(cartId){
         if(cartId.errors){
             return cartId.errors
         }
@@ -24,11 +25,14 @@ export const createCart = (userId) => async (dispatch) => {
     }
 }
 
+export const 
+
 const initialState = {}
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
       case  LOAD_CART:
+        console.log(action.payload)
         return { cartId: action.payload }
       default:
         return state;
