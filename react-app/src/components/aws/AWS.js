@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { createCart } from '../../store/cart';
+import { createCart, checkoutCart } from '../../store/cart';
 import { useDispatch } from 'react-redux';
 
 const AWS = () => {
@@ -28,7 +28,7 @@ const AWS = () => {
       //     one
       //   })
       // })
-      dispatch(createCart(1))
+      dispatch(checkoutCart(40, 1))
     }
 
     return (

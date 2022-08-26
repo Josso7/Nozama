@@ -5,9 +5,7 @@ const loadCart = (cartId) => ({
     payload: cartId
 });
 
-export const createCart = (id) => async (dispatch) => {
-    const userId = id
-    // console.log(userId)
+export const createCart = (userId) => async (dispatch) => {
     const cartId = await fetch('/api/carts/', {
         method: 'POST',
         headers: {
@@ -25,7 +23,12 @@ export const createCart = (id) => async (dispatch) => {
     }
 }
 
-export const 
+export const checkoutCart = (cartId, userId) => async (dispatch) => {
+        const response = await fetch(`/api/carts/${cartId}/checkout`, {
+            method: 'PUT'
+        })
+        dispatch(createCart(userId))
+}
 
 const initialState = {}
 

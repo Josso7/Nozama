@@ -1,3 +1,4 @@
+from operator import truediv
 from flask import Blueprint, request
 from app.models import Cart, db
 from datetime import datetime
@@ -18,3 +19,11 @@ def create_cart():
     db.session.add(cart)
     db.session.commit()
     return f'{cart.id}'
+
+@cart_routes.route('/<int:cartId>/checkout', methods=['PUT'])
+def checkout_cart(cartId):
+    cart = Cart.query.get(cartId)
+    cart.completed_order = True
+
+    db.session.commit()
+    return cart.to_dict()
