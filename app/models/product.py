@@ -7,7 +7,7 @@ class Product(db.Model):
     name = db.Column(db.String(100), nullable = False, unique = False)
     price = db.Column(db.Integer, nullable = False, unique = False)
     category = db.Column(db.String(100), nullable = False, unique = False)
-    description = db.Column(db.String(255), nullable = False, unique = False)
+    description = db.Column(db.String(2000), nullable = False, unique = False)
     image0 = db.Column(db.String(1000), nullable = False, unique = False)
     image1 = db.Column(db.String(1000), nullable = True, unique = False)
     image2 = db.Column(db.String(1000), nullable = True, unique = False)
