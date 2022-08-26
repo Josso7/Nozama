@@ -22,7 +22,7 @@ def create_cart():
 
 @cart_routes.route('/<int:cartId>/checkout', methods=['PUT'])
 def checkout_cart(cartId):
-    cart = Cart.query.get(cartId)
+    cart = Cart.query.get(int(cartId))
     cart.completed_order = True
 
     db.session.commit()

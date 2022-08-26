@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { createCart, checkoutCart } from '../../store/cart';
 import { useDispatch } from 'react-redux';
+import { createProduct, deleteProduct, editProduct } from '../../store/product';
 
 const AWS = () => {
     const dispatch = useDispatch();
@@ -18,17 +19,7 @@ const AWS = () => {
     }
 
     const testTheThing = async (e) => {
-      const one = 1
-      // const res = await fetch('/api/carts/', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      //   body: JSON.stringify({
-      //     one
-      //   })
-      // })
-      dispatch(checkoutCart(40, 1))
+      dispatch(editProduct(4, 'notTrumpet', 1, 'Video Game', 'Retro game', 'Still S3 Storage'))
     }
 
     return (

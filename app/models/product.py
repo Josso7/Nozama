@@ -15,17 +15,17 @@ class Product(db.Model):
     image4 = db.Column(db.String(1000), nullable = True, unique = False)
     image5 = db.Column(db.String(1000), nullable = True, unique = False)
 
-def to_dict(self):
-    return {
-        'id': self.id,
-        'name': self.name,
-        'price': self.price,
-        'category': self.category,
-        'description': self.description,
-        'image0': self.image0,
-        'image1': self.image1,
-        'image2': self.image2,
-        'image3': self.image3,
-        'image4': self.image4,
-        'image5': self.image5
-    }
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'price': self.price,
+            'category': self.category,
+            'description': self.description,
+            'image0': self.image0,
+            'image1': self.image1,
+            'image2': self.image2,
+            'image3': self.image3,
+            'image4': self.image4,
+            'image5': self.image5
+        }

@@ -1,5 +1,3 @@
-import reducer from "./cart"
-
 const LOAD_PRODUCTS = 'session/LOAD_PRODUCTS'
 const ADD_PRODUCT = 'session/ADD_PRODUCT'
 
@@ -7,6 +5,50 @@ const addProduct = (product) => ({
     type: ADD_PRODUCT,
     payload: product
 })
+
+export const editProduct = (productId, name, price, category, description, image0, image1, image2, image3, image4, image5) => async (dispatch) => {
+    const response = await fetch(`/api/products/${productId}/edit`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name,
+            price,
+            category,
+            description,
+            image0,
+            image1,
+            image2,
+            image3,
+            image4,
+            image5
+        })
+    })
+    if(response.ok){
+        const data = response.json();
+        return data
+    } else if(response.status < 500){
+        if(response.errors){
+        const data = response.json();
+        return data
+        }
+    }
+}
+
+export const deleteProduct = (productId)  => async (dispatch) => {
+    const response = await fetch(`/api/products/${productId}/delete`, {
+        method: 'DELETE'
+    })
+    if(response.ok){
+        const data = response.json()
+    } else if(response.status < 500){
+        const data = response.json()
+        if(data.errors){
+            return data.errors
+        }
+    }
+}
 
 export const createProduct = (name, price, category, description, image0, image1, image2, image3, image4, image5) => async (dispatch) => {
     const response = await fetch('/api/products/', {
@@ -51,6 +93,8 @@ export default function reducer(state = initialState, action){
                 action.products.forEach(product => {
                     newState[product.id] = product
                 })
-            return newState
+            return newState;
+        default:
+            return state;
     }
 }
