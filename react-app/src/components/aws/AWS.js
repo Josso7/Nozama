@@ -1,7 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
+import { createCart, checkoutCart } from '../../store/cart';
+import { useDispatch } from 'react-redux';
+import { createProduct, deleteProduct, editProduct } from '../../store/product';
 
 const AWS = () => {
+    const dispatch = useDispatch();
     const [imageFile, setImageFile] = useState('');
 
     const uploadFile = async (e) => {
@@ -14,7 +18,12 @@ const AWS = () => {
       console.log(res)
     }
 
+    const testTheThing = async (e) => {
+      dispatch(editProduct(4, 'notTrumpet', 1, 'Video Game', 'Retro game', 'Still S3 Storage'))
+    }
+
     return (
+      <>
         <form onSubmit={e => uploadFile(e)}>
             <label className='upload-files-button' htmlFor='upload-files-input'>SELECT FILE</label>
               <input
@@ -24,6 +33,8 @@ const AWS = () => {
                 ></input>
             <button type='submit'></button>
         </form>
+        <button onClick={e => testTheThing(e)}> Test the thing </button>
+      </>
     )
 }
 
