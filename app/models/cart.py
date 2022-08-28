@@ -9,7 +9,7 @@ class Cart(db.Model):
     created_at = db.Column(db.DateTime, nullable = False, unique = False)
 
     user = db.relationship('User', back_populates='cart')
-    CartItems = db.relationship('CartItems', back_populates='cart')
+    cartItems = db.relationship('CartItem', back_populates='cart')
 
     def to_dict(self):
         return {

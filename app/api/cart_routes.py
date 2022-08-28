@@ -27,3 +27,9 @@ def checkout_cart(cartId):
 
     db.session.commit()
     return cart.to_dict()
+
+@cart_routes.route('/<int:cartId>/cartItems', methods=['GET'])
+def get_cart_items(cartId):
+    cart_items = db.session.query(Cart).filter(Cart.id == cartId)
+
+    return { 'cartItems': [cart_item.to_dict() for cart_item in cart_items]}
