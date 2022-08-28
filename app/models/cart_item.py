@@ -1,14 +1,14 @@
 from .db import db
 
-class CartItems(db.Model):
+class CartItem(db.Model):
     __tablename__ = 'cartItems'
 
-    id = db.Column(db.Integer, primary_key = True, nullable = False)
+    id = db.Column(db.Integer, primary_key = True)
     cart_id = db.Column(db.Integer, db.ForeignKey('carts.id'), nullable = False, unique = False)
     product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable = False, unique = False)
     quantity = db.Column(db.Integer, nullable = False, unique = False)
 
-    cart = db.relationship('Cart', back_populates='CartItems')
+    cart = db.relationship('Cart', back_populates='cartItems')
 
     def to_dict(self):
         return {

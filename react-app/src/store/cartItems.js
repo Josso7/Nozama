@@ -6,8 +6,10 @@ const loadItems = (cartItems) => ({
 })
 
 export const getCartItems = () => async (dispatch) => {
-    
+
 }
+
+const initialState = {}
 
 export default function reducer(state = initialState, action){
     switch(action.type){
@@ -17,5 +19,7 @@ export default function reducer(state = initialState, action){
                 newState[item.id] = item
             })
             return newState
+        default:
+            return state
     }
 }

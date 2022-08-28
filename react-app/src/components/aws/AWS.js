@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { createCart, checkoutCart } from '../../store/cart';
 import { useDispatch } from 'react-redux';
 import { createProduct, deleteProduct, editProduct, getAllProducts } from '../../store/product';
+import { getCartItems } from '../../store/cartItems';
 
 const AWS = () => {
     const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const AWS = () => {
     }
 
     const testTheThing = async (e) => {
-      dispatch(getAllProducts())
+      dispatch(getCartItems(1))
     }
 
     return (
