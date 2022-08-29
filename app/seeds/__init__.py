@@ -23,7 +23,7 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_users()
+    undo_cart_items()
     undo_carts()
     undo_products()
-    undo_cart_items()
-    # Add other undo functions here
+# Add other undo functions here

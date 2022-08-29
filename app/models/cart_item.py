@@ -1,7 +1,7 @@
 from .db import db
 
 class CartItem(db.Model):
-    __tablename__ = 'cartItems'
+    __tablename__ = 'cartitems'
 
     id = db.Column(db.Integer, primary_key = True)
     cart_id = db.Column(db.Integer, db.ForeignKey('carts.id'), nullable = False, unique = False)
