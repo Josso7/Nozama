@@ -1,6 +1,6 @@
 from operator import truediv
 from flask import Blueprint, request
-from app.models import Cart, db
+from app.models import Cart, CartItem, db
 from datetime import datetime
 
 cart_routes = Blueprint('carts', __name__)
@@ -30,6 +30,6 @@ def checkout_cart(cartId):
 
 @cart_routes.route('/<int:cartId>/cartItems', methods=['GET'])
 def get_cart_items(cartId):
-    cart_items = db.session.query(Cart).filter(Cart.id == cartId)
+    cart_items = db.session.query(CartItem).filter(CartItem.cart_id == cartId)
 
     return { 'cartItems': [cart_item.to_dict() for cart_item in cart_items]}
