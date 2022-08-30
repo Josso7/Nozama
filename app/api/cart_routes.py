@@ -7,15 +7,12 @@ cart_routes = Blueprint('carts', __name__)
 
 @cart_routes.route('/', methods=['POST'])
 def create_cart():
-    # print(request.json)
     user_id = request.json.get('userId')
-
     cart = Cart(
         user_id = user_id,
         completed_order = False,
         created_at = datetime.utcnow()
     )
-
     db.session.add(cart)
     db.session.commit()
     return f'{cart.id}'
@@ -34,3 +31,14 @@ def get_cart_items(cartId):
 
     return { 'cartItems': [cart_item.to_dict() for cart_item in cart_items]}
 
+@cart_routes.route('/<int:cartId>/cartItems', methods=['POST'])
+def add_cart_item():
+    data = request.json
+    cart_item = CartItem(
+        cart_id = data['cartId'],
+        product_id = data['productId'],
+        quantity = data['quantity']
+    )
+    db.session.add(cart_item)
+    db.session.commit()
+    return cart_item.to_dict()
