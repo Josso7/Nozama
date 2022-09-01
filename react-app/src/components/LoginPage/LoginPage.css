@@ -1,0 +1,22 @@
+h1 {
+    font-family: 'Arial, sans-serif';
+    font-size: 28px;
+    line-height: 1.2;
+    padding-bottom: 4px;
+}
+
+.login-divider {
+    color: rgb(118, 118, 118);
+    box-sizing: 'border-box';
+    background-color: (255, 255, 255);
+    display: inline-block;
+    font-family: 'Arial, sans-serif'
+}
+
+.login-divider::after {
+    border-top-style: 'solid';
+    background-color: rgba(0,0,0,0);
+    border-top-color: rgb(231,231,231);
+    border-top-width: 1px;
+    height: 1px;
+}
