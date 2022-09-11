@@ -1,22 +1,65 @@
 h1 {
-    font-family: 'Arial, sans-serif';
+    font-family: Arial, sans-serif;
     font-size: 28px;
     line-height: 1.2;
     padding-bottom: 4px;
+    font-weight: 400;
+    color: rgb(17, 17 , 17);
+    display: block;
+}
+
+.login-container {
+    width: 350px;
+    padding: 20px 26px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.form-label {
+    display: block;
+}
+
+#email {
+    display: block;
 }
 
 .login-divider {
     color: rgb(118, 118, 118);
-    box-sizing: 'border-box';
+    box-sizing: border-box;
     background-color: (255, 255, 255);
     display: inline-block;
-    font-family: 'Arial, sans-serif'
+    font-family: Arial, sans-serif
 }
 
 .login-divider::after {
-    border-top-style: 'solid';
+    border-top-style: solid;
     background-color: rgba(0,0,0,0);
     border-top-color: rgb(231,231,231);
     border-top-width: 1px;
     height: 1px;
+}
+
+.submit-button-container {
+    display: block;
+    background: linear-gradient(to bottom,#f7dfa5,#f0c14b);
+}
+
+.input-submit {
+    opacity: .01;
+}
+
+.input-submit-text {
+    font-family: Arial, sans-serif;
+    display: inline-block
+}
+
+.create-account {
+    background: #e7e9ec;
+    border: solid 1px;
+    border-color: #adb1b8 #a2a6ac #8d9096;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 13px;
+    line-height: 29px;
+    font-family: Arial, sans-serif;
 }
