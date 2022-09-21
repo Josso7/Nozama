@@ -9,6 +9,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import AWS from './components/aws/AWS'
 import LoginPage from './components/LoginPage'
+import SignupPage from './components/SignupPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -31,8 +32,8 @@ function App() {
         <Route path='/login' exact={true}>
           <LoginPage />
         </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
+        <Route path='/signup' exact={true}>
+          <SignupPage />
         </Route>
         <Route path='/test' exact={true}>
           <AWS />

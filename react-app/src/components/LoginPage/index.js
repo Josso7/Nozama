@@ -1,10 +1,26 @@
 import './LoginPage.css'
-
+import { useState } from 'react'
+import { login } from '../../store/session';
+import { useDispatch } from 'react-redux';
 function LoginPage() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [errors, setErrors] = useState('');
+    const [displayErrors, setDisplayErrors] = useState('');
+    const dispatch = useDispatch();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const data = await dispatch(login(email, password))
+        if(data){
+            setErrors(data);
+        }
+    }
+
     return (
         <>
         <div className='login-container'>
-            <form>
+            <form onSubmit={handleSubmit()}>
                 <h1 className='sign-in-header'>
                     Sign in
                 </h1>
@@ -24,7 +40,7 @@ function LoginPage() {
                 <div className='login-divider'>
                         <h5 className='login-divider-text'>New to Nozama?</h5>
                 </div>
-                <a href='/create-account' className='create-account-button'> Create your Nozama account </a>
+                <a href='/signup' className='create-account-button'> Create your Nozama account </a>
             </div>
 
         </>
