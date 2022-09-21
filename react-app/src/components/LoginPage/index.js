@@ -6,13 +6,14 @@ function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState('');
-    const [displayErrors, setDisplayErrors] = useState('');
+    const [displayErrors, setDisplayErrors] = useState(false);
+    const [displayPassword, setDisplayPassword] = useState(false);
     const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = await dispatch(login(email, password))
-        if(data){
+        if(data) {
             setErrors(data);
         }
     }
@@ -20,18 +21,15 @@ function LoginPage() {
     return (
         <>
         <div className='login-container'>
-            <form onSubmit={handleSubmit()}>
+            <form onSubmit={e => handleSubmit(e)}>
                 <h1 className='sign-in-header'>
                     Sign in
                 </h1>
-                <label htmlFor='email' className='form-label'>Enter your email</label>
-                <input type='email' className='email-input'></input>
+                {!displayPassword &&
+                <label htmlFor='email' className='form-label'>Enter your email</label> &&
+                <input type='email' className='email-input'></input>}
                 <span className='submit-button-container'>
-                    <input onClick={(e) => {
-                        e.preventDefault();
-                        console.log('clicked')
-                }}
-                type='submit' className='input-submit'></input>
+                    <input type='submit' className='input-submit'></input>
                     <span className='input-submit-text'> Continue </span>
                 </span>
             </form>
